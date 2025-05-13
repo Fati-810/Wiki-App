@@ -1,4 +1,5 @@
 //jshint esversion:6
+require("dotenv").config();
 const express = require("express");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
@@ -9,24 +10,19 @@ app.use(express.urlencoded({
 }));
 app.use(express.json());
 app.use(express.static("public"));
-mongoose.connect("mongodb://127.0.0.1:27017/wikiDB", {
-    useNewUrlParser: true
-    , useUnifiedTopology: true
-});
+console.log("Connecting to:", process.env.MONGO_URI);
+// ✅ Cleaned for Mongoose v8
+mongoose.connect(process.env.MONGO_URI);
 const articleSchema = {
     title: String
     , content: String
 };
 const Article = mongoose.model("Article", articleSchema);
-//// Requests Targeting All Articles ////
+// All articles route
 app.route("/articles").get(function (req, res) {
     Article.find(function (err, foundArticles) {
-        if (!err) {
-            res.send(foundArticles);
-        }
-        else {
-            res.send(err);
-        }
+        if (!err) res.send(foundArticles);
+        else res.send(err);
     });
 }).post(function (req, res) {
     console.log("POST /articles route hit!");
@@ -47,31 +43,21 @@ app.route("/articles").get(function (req, res) {
     });
 }).delete(function (req, res) {
     Article.deleteMany(function (err) {
-        if (!err) {
-            res.send("Successfully Deleted.");
-        }
-        else {
-            res.send(err);
-        }
+        if (!err) res.send("Successfully Deleted.");
+        else res.send(err);
     });
 });
-//// Requests Targeting Specific Article ////
+// Specific article route
 app.route("/articles/:articleTitle").get(function (req, res) {
     Article.findOne({
         title: req.params.articleTitle
     }, function (err, foundArticle) {
-        if (err) {
-            res.send(err);
-        }
-        else if (!foundArticle) {
-            res.send("❗ No Article Found with that Title.");
-        }
-        else {
-            res.json(foundArticle);
-        }
+        if (err) res.send(err);
+        else if (!foundArticle) res.send("❗ No Article Found with that Title.");
+        else res.json(foundArticle);
     });
 }).put(function (req, res) {
-    Article.update({
+    Article.updateOne({
         title: req.params.articleTitle
     }, {
         title: req.body.title
@@ -79,9 +65,8 @@ app.route("/articles/:articleTitle").get(function (req, res) {
     }, {
         overwrite: true
     }, function (err) {
-        if (!err) {
-            res.send("Successfully Changed.");
-        }
+        if (!err) res.send("Successfully Changed.");
+        else res.send(err);
     });
 }).patch(function (req, res) {
     Article.updateOne({
@@ -89,9 +74,7 @@ app.route("/articles/:articleTitle").get(function (req, res) {
     }, {
         $set: req.body
     }, function (err, result) {
-        if (err) {
-            res.send(err);
-        }
+        if (err) res.send(err);
         else if (result.matchedCount === 0 || result.n === 0) {
             res.send("❗ Article Not Found. Nothing was Updated.");
         }
@@ -103,9 +86,7 @@ app.route("/articles/:articleTitle").get(function (req, res) {
     Article.deleteOne({
         title: req.params.articleTitle
     }, function (err, result) {
-        if (err) {
-            res.send(err);
-        }
+        if (err) res.send(err);
         else if (result.deletedCount === 0) {
             res.send("❗ Article already Deleted or Not Found.");
         }
@@ -114,10 +95,12 @@ app.route("/articles/:articleTitle").get(function (req, res) {
         }
     });
 });
-// Home route for root URL
+// Home route
 app.get("/", function (req, res) {
     res.send("Welcome to the Wiki API! Use /articles to get started.");
 });
-app.listen(3000, function () {
-    console.log("Server started on port 3000");
+// Port for Render or local
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, function () {
+    console.log(`Server started on port ${PORT}`);
 });
