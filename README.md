@@ -1,17 +1,22 @@
 # Wiki-App
 
-The WikiApp is a simple, static web application that allows users to browse predefined Wikipedia-style content. It mimics the functionality of a traditional wiki by presenting structured information on various topics through a clean and organized interface.
+The WikiApp is a simple full-stack web application that lets users create, read, update, and delete wiki-style articles. It is designed as a self-contained knowledge management system — all data is stored in a MongoDB database, and no external APIs (like Wikipedia) are used.
+
 
 # Features:
-✔️View pre-written wiki articles stored locally or in a database.
+✔️ View all saved wiki-style articles.
+  
+✔️ Add new articles with a title and content.
 
-✔️Search and navigate through available topics easily.
+✔️ Search for articles by title.
 
-✔️Structured display of article title, content, and metadata.
+✔️ Update existing articles (title/content).
 
-✔️Clean, minimal interface optimized for readability.
+✔️ Delete specific articles.
 
-✔️Responsive design — works well on both desktop and mobile.
+✔️ Collapsible article view for clean browsing.
+
+✔️ Responsive design for desktop and mobile.
 
 # Technical Overview (Behind the Scenes):
 
