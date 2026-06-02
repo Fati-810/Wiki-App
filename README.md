@@ -25,19 +25,19 @@ User Experience:
 
 ## Technical Overview: (Behind the Scenes)
 
-HTML & CSS: Structures and styles the layout and article content.
+**HTML & CSS:** Structures and styles the layout and article content.
 
-JavaScript: Handles interactions like search and navigation.
+**JavaScript:** Handles interactions like search and navigation.
 
-EJS Templating: Dynamically renders article content from the backend.
+**EJS Templating:** Dynamically renders article content from the backend.
 
-Node.js & Express: Manages routing and serves static/dynamic pages.
+**Node.js & Express:** Manages routing and serves static/dynamic pages.
 
-MongoDB: Stores the article data (titles, content, etc.).
+**MongoDB:** Stores the article data (titles, content, etc.).
 
-Mongoose: Used for schema-based interaction with the MongoDB database.
+**Mongoose:** Used for schema-based interaction with the MongoDB database.
 
-Render: Used for deploying and hosting the application.
+**Render:** Used for deploying and hosting the application.
 
 ## Preview:
 https://wiki-app-w3rv.onrender.com
@@ -45,9 +45,9 @@ https://wiki-app-w3rv.onrender.com
 ## Contact:
 If you'd like to see more of my work, connect with me through my portfolio:
 
-Developer: Fatimah Ali
-Website: fatimahdigitaledge.com
-GitHub: github.com/fati-810
+**Developer:** *Fatimah Ali*  
+**Website:** fatimahdigitaledge.com  
+**GitHub:** github.com/fati-810
 
 ## License:
 This project is for educational and portfolio purposes.
