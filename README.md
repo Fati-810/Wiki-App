@@ -5,7 +5,7 @@ The WikiApp is a **simple full-stack web application** that lets users create, r
 
 ## Features:
 
-Wiki Articles Management:
+**Wiki Articles Management:**
 
 📖 View all saved wiki-style articles.
   
@@ -17,7 +17,7 @@ Wiki Articles Management:
 
 🗑️  Delete specific articles.
 
-User Experience:
+**User Experience:**
 
 📂 Collapsible article view for clean browsing.
 
